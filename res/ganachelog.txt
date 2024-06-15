@@ -1,0 +1,55 @@
+$ docker logs ganache
+ganache v7.9.2 (@ganache/cli: 0.10.2, @ganache/core: 0.10.2)
+Starting RPC server
+(node:1) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Available Accounts
+==================
+(0) 0xa6488Fb530930997E4022FfCb7485314ab9Be3A1 (100 ETH)
+(1) 0xDB7794eDfCD1f12e47F61A5644fa28644e532ec1 (100 ETH)
+(2) 0xA454d05E2FEd273a449c56Ef4BD8869f0d6a50E7 (100 ETH)
+(3) 0x2Da603b7d3f1Fd2DEd910cDb42a9da44fE3fD580 (100 ETH)
+(4) 0xCb78aC88B8802FE9c7f86b2401019F860fDCc140 (100 ETH)
+(5) 0x0123090888CEd11B58908523C4977Cb57ACC16a6 (100 ETH)
+(6) 0xa5d22b90BFf537012799d1479a2C7359b6a8f1Fa (100 ETH)
+(7) 0xB4c9bE9A5d875D9D1C7AE3b0b5f617DDA3CFE5bD (100 ETH)
+(8) 0xC6cb54578941a7526D92CdE42ee4783ffbdC355f (100 ETH)
+(9) 0x0412d1382A102C2e1825bb168C042006330258f0 (100 ETH)
+
+Private Keys
+==================
+(0) 0xfc4592fb6e0a9e0a125e2b6cc8bafb6ede28ab198f440d0a4cfbfbff1eb69965
+(1) 0x8e358fdad8f308b45e073ebf3c9b720c13e360c32fd1b8a0515210f609643235
+(2) 0x91d706f47a7296bd732798eb4f43e412714d0b2ff10587c17807abd0c9923b2b
+(3) 0x911c94f875e7fcb07329f720eeb2f186194179f6a06d3a09b6ad33a5195d468e
+(4) 0x23a4302ce44d08ab29f800928f1c46bc9d49d9d3bde3035f3cdc933981c38941
+(5) 0x026789dc1ab922941b8337163bd06c35908a084675a4150a27940eee0f547b9a
+(6) 0x60907832b37c1f617bb8abb26c34159d49c58404cda277dfae8eca4fc78149d6
+(7) 0xa2ea077bda1a3df0d0fefb382d3ee2d1824dc8e6f3c8bcc752e9e7955940695f
+(8) 0x6f4393400a724256ebd299c6d1e7c9c481c8c94ea48c491a334f5b78eab00984
+(9) 0x95697d364652d987141879a0bc351ba60528bac912f021756a2bd50674f233d3
+
+HD Wallet
+==================
+Mnemonic:      swing echo voyage type pig wave divert economy cross pig crash liberty
+Base HD Path:  m/44'/60'/0'/0/{account_index}
+
+Default Gas Price
+==================
+2000000000
+
+BlockGas Limit
+==================
+30000000
+
+Call Gas Limit
+==================
+50000000
+
+Chain
+==================
+Hardfork: shanghai
+Id:       1337
+
+RPC Listening on 0.0.0.0:8545

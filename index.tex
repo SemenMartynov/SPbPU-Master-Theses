@@ -1,0 +1,308 @@
+% !TeX root = index.tex
+\documentclass[a4paper, 14pt]{extreport}   % general format
+
+%%%% Charset
+\usepackage{cmap}							% make PDF files searchable and copyable
+\usepackage[utf8]{inputenc}					% accept different input encodings
+\usepackage[T2A]{fontenc}					% russian font
+\usepackage[russian]{babel}					% multilingual support (T2A)
+
+
+%%%% Font
+\usepackage{tempora} % Time New Romans (this supports Cyrillic)
+\DeclareUnicodeCharacter{0306}{}{} % й
+
+%%%% Graphics
+\usepackage[dvipsnames]{xcolor} % driver-independent color extensions
+\usepackage{graphicx}           % enhanced support for graphics
+\usepackage{wrapfig}            % pro­duces fig­ures which text can flow around
+
+%%%% Math
+\usepackage{amsmath}            % Amer­i­can Math­e­mat­i­cal So­ci­ety (AMS) math fa­cil­i­ties
+\usepackage{amsfonts}           % fonts from the AMS
+\usepackage{amssymb}            % additional math symbols
+
+%%%% Ty­po­grapy (don't forget about cm-super)
+\usepackage[left=3cm, right=1cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{microtype}          % sublim­i­nal re­fine­ments to­wards ty­po­graph­i­cal per­fec­tion
+\linespread{1.5}                % line spacing
+\setlength{\parindent}{1.25cm}     % we don't want any paragraph indentation
+\usepackage{indentfirst}      % ... and after sections
+\setlength{\parskip}{0cm}     % space between the paragraphs
+
+%%%% Other
+%\usepackage{hyperref}           % ver­ba­tim with URL-sen­si­tive line breaks
+\usepackage[hidelinks]{hyperref}   % hide links borders
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+%\DeclareUnicodeCharacter{00A0}{~}
+\usepackage{float}
+\usepackage{color,soul}
+\usepackage{enumitem}			% nested enumerate
+\setlist[enumerate]{nosep}
+
+%%%% Page numeration
+\usepackage{fancyhdr} % Подключаем пакет fancyhdr для управления стилями колонтитулов
+
+\fancypagestyle{clean}{ % Определяем стиль
+  \fancyhf{} % Очищаем все поля колонтитулов
+  \renewcommand{\headrulewidth}{0pt} % Убираем линию под заголовком
+}
+
+\fancypagestyle{plain}{ % Определяем стиль для первых страниц и всего текста
+    \fancyhf{} % Очищаем заголовки и нижние колонтитулы
+    \renewcommand{\headrulewidth}{0pt} % Убираем линию вверху страницы
+    \fancyhead[R]{\hspace*{1cm}\thepage} % Верхний правый колонтитул с отступом
+}
+
+%\setcounter{page}{5}
+
+%----НАЗВАНИЯ-РАЗДЕЛОВ-И-СОДЕРЖАНИЕ--------------------------------------------
+\usepackage[raggedright]{titlesec} % не переносить заголовки
+
+%\renewcommand{\chaptertitlename}{ГЛАВА}
+\titleformat
+	{\chapter} % command: the sectioning command to be redefined
+	[block] % shape is sectioning paragraph shape
+	{\centering\normalfont\normalsize\bfseries} % format: title, label, and text
+%	{\chaptertitlename\ \thechapter . } % label
+	{\thechapter . } % label
+	{4pt} % the horizontal separation between label and title body
+	{\MakeUppercase} % before-code
+	[] % after-code
+
+\titleformat{\section}[block]
+{\centering\normalfont\normalsize\bfseries}{\thesection .}{4pt}{}
+
+\titleformat{\subsection}[block]
+{\centering\normalfont\normalsize}{\thesubsection .}{4pt}{}
+
+\titleformat{\subsubsection}[block]
+{\centering\normalfont\normalsize}{\thesubsubsection .}{4pt}{}
+
+%%%% ToC
+\usepackage{titletoc}
+
+\addto\captionsrussian{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Содержание}%
+}
+
+\titlecontents{chapter}[0em]{}%
+ {\thecontentslabel.\enspace}%numbered
+ {}%numberless
+ {\titlerule*[0.4pc]{.}\contentspage}%
+
+\titlecontents{section}[0.0em]{}%
+ {\thecontentslabel.\enspace}%numbered
+ {}%numberless
+ {\titlerule*[0.4pc]{.}\contentspage}%
+ 
+\titlecontents{subsection}[0.0em]{}%
+ {\thecontentslabel.\enspace}%numbered
+ {}%numberless
+ {\titlerule*[0.4pc]{.}\contentspage}%
+
+%----СПИСОК-ИСПОЛЬЗОВАННЫХ-ИСТОЧНИКОВ------------------------------------------
+
+%\renewcommand{\bibname}{Список использованных источников}
+\addto{\captionsrussian}{\renewcommand{\bibname}{Список использованных источников}}
+
+\urlstyle{same}
+
+%----ЛИСТИНГ-------------------------------------------------------------------
+\usepackage{listings}           % type­set source code list­ings
+\usepackage{textcomp}           % for other glyphs
+
+% Цвета для кода
+\definecolor{string}{HTML}{101AF9}      % цвет строк в коде
+\definecolor{comment}{HTML}{3F7F5F}     % цвет комментариев в коде
+\definecolor{keyword}{HTML}{5F1441}     % цвет ключевых слов в коде
+\definecolor{morecomment}{HTML}{8000FF} % цвет include и других элементов в коде
+\definecolor{captiontext}{HTML}{FFFFFF} % цвет текста заголовка в коде
+\definecolor{captionbk}{HTML}{999999}   % цвет фона заголовка в коде
+\definecolor{bk}{HTML}{FFFFFF}          % цвет фона в коде
+\definecolor{frame}{HTML}{999999}       % цвет рамки в коде
+
+% Настройки отображения кода
+\lstset{
+    language=C++,               % Язык кода по умолчанию
+    morekeywords={*,...},       % если хотите добавить ключевые слова, то добавляйте
+    % Цвета
+    keywordstyle=\color{keyword}\ttfamily\bfseries,
+    stringstyle=\color{string}\ttfamily,
+    commentstyle=\color{comment}\ttfamily\itshape,
+    morecomment=[l][\color{morecomment}]{\#},
+    % Настройки отображения
+    breaklines=true,            % Перенос длинных строк
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+    basicstyle=\ttfamily\footnotesize,    % Шрифт для отображения кода
+    backgroundcolor=\color{bk}, % Цвет фона кода
+    %frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep, % Рамка, подогнанная к заголовку
+    frame=tblr                  % draw a frame at all sides of the code block
+    rulecolor=\color{frame},    % Цвет рамки
+    tabsize=2,                  % tab space width
+    showstringspaces=false,     % don't mark spaces in strings
+    % Настройка отображения номеров строк. Если не нужно, то удалите весь блок
+    numbers=left,               % Слева отображаются номера строк
+    stepnumber=1,               % Каждую строку нумеровать
+    numbersep=5pt,              % Отступ от кода
+    numberstyle=\small\color{black},      % Стиль написания номеров строк
+    % Для отображения русского языка
+    extendedchars=true,
+      literate=
+          {Ö}{{\"O}}1                    {Ä}{{\"A}}1                    {Ü}{{\"U}}1
+          {ß}{{\ss}}1                    {ü}{{\"u}}1                    {ä}{{\"a}}1
+          {ö}{{\"o}}1                    {~}{{\textasciitilde}}1        {а}{{\selectfont\char224}}1
+          {б}{{\selectfont\char225}}1    {в}{{\selectfont\char226}}1    {г}{{\selectfont\char227}}1
+          {д}{{\selectfont\char228}}1    {е}{{\selectfont\char229}}1    {ё}{{\"e}}1
+          {ж}{{\selectfont\char230}}1    {з}{{\selectfont\char231}}1    {и}{{\selectfont\char232}}1
+          {й}{{\selectfont\char233}}1    {к}{{\selectfont\char234}}1    {л}{{\selectfont\char235}}1
+          {м}{{\selectfont\char236}}1    {н}{{\selectfont\char237}}1    {о}{{\selectfont\char238}}1
+          {п}{{\selectfont\char239}}1    {р}{{\selectfont\char240}}1    {с}{{\selectfont\char241}}1
+          {т}{{\selectfont\char242}}1    {у}{{\selectfont\char243}}1    {ф}{{\selectfont\char244}}1
+          {х}{{\selectfont\char245}}1    {ц}{{\selectfont\char246}}1    {ч}{{\selectfont\char247}}1
+          {ш}{{\selectfont\char248}}1    {щ}{{\selectfont\char249}}1    {ъ}{{\selectfont\char250}}1
+          {ы}{{\selectfont\char251}}1    {ь}{{\selectfont\char252}}1    {э}{{\selectfont\char253}}1
+          {ю}{{\selectfont\char254}}1    {я}{{\selectfont\char255}}1    {А}{{\selectfont\char192}}1
+          {Б}{{\selectfont\char193}}1    {В}{{\selectfont\char194}}1    {Г}{{\selectfont\char195}}1
+          {Д}{{\selectfont\char196}}1    {Е}{{\selectfont\char197}}1    {Ё}{{\"E}}1
+          {Ж}{{\selectfont\char198}}1    {З}{{\selectfont\char199}}1    {И}{{\selectfont\char200}}1
+          {Й}{{\selectfont\char201}}1    {К}{{\selectfont\char202}}1    {Л}{{\selectfont\char203}}1
+          {М}{{\selectfont\char204}}1    {Н}{{\selectfont\char205}}1    {О}{{\selectfont\char206}}1
+          {П}{{\selectfont\char207}}1    {Р}{{\selectfont\char208}}1    {С}{{\selectfont\char209}}1
+          {Т}{{\selectfont\char210}}1    {У}{{\selectfont\char211}}1    {Ф}{{\selectfont\char212}}1
+          {Х}{{\selectfont\char213}}1    {Ц}{{\selectfont\char214}}1    {Ч}{{\selectfont\char215}}1
+          {Ш}{{\selectfont\char216}}1    {Щ}{{\selectfont\char217}}1    {Ъ}{{\selectfont\char218}}1
+          {Ы}{{\selectfont\char219}}1    {Ь}{{\selectfont\char220}}1    {Э}{{\selectfont\char221}}1
+          {Ю}{{\selectfont\char222}}1    {Я}{{\selectfont\char223}}1    {і}{{\selectfont\char105}}1
+          {ї}{{\selectfont\char168}}1    {є}{{\selectfont\char185}}1    {ґ}{{\selectfont\char160}}1
+          {І}{{\selectfont\char73}}1     {Ї}{{\selectfont\char136}}1    {Є}{{\selectfont\char153}}1
+          {Ґ}{{\selectfont\char128}}1
+}
+
+\lstdefinestyle{CommandLineStyle}{
+    basicstyle=\small\ttfamily,
+    % basicstyle=\fontfamily{pcr}\footnotesize,
+    numbers=none,
+    %frame=tblr                  % draw a frame at all sides of the code block
+    frame=none,                  % draw a frame at all sides of the code block
+    rulecolor=\color{frame},    % Цвет рамки
+    tabsize=2,                  % tab space width
+    showstringspaces=false,     % don't mark spaces in strings
+    columns=fullflexible,
+    breaklines=true,
+    breakindent=1em,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+    breakautoindent=true,
+    literate={`}{\textasciigrave}{1}
+}
+
+\input{javascript-highlighting.tex} % javascrypt
+\input{solidity-highlighting.tex} % solidity
+
+% Для настройки заголовка кода
+\usepackage[labelsep=period]{caption}
+%\DeclareCaptionFont{white}{\color{сaptiontext}}
+\DeclareCaptionFont{white}{\color[HTML]{FFFFFF}}
+%\DeclareCaptionFormat{listing}{\parbox{\linewidth}{\colorbox{сaptionbk}{\parbox{\linewidth}{#1#2#3}}\vskip-4pt}}
+\DeclareCaptionFormat{listing}{\parbox{\linewidth}{\begin{flushright}
+{#1#2#3}
+\end{flushright}\vskip-4pt}}
+\captionsetup[lstlisting]{format=listing}
+\renewcommand{\lstlistingname}{Листинг}   % Переименование Listings в нужное именование структуры
+
+%------------------------------------------------------------------------------
+\begin{document}
+
+\pagestyle{clean} % Применяем стиль plain для первой страницы
+\input{titlepage}                            % inclide the title page
+\input{taskpage}
+\input{abstract_ru}
+\input{abstract_en}
+%\input{abbreviations}
+
+\pagestyle{plain}
+\tableofcontents
+\sloppy  % Активируем переносы
+
+\input{intro}
+\input{01.theory}
+\input{02.review}
+\input{03.production}
+\input{conclusion}
+\input{sources}                              % inclide the list of sources
+%\input{annexA}
+
+
+\end{document}
+
+%------------------------------------------------------------------------------
+% Examples:
+%
+%
+% Image:
+% \begin{figure}[H]
+% \centering
+% \includegraphics[scale=0.8]{res/pic01}
+% \caption{Picture description}
+% \end{figure}
+%
+%
+% Table:
+% \begin{table}[htb]
+%     \begin{tabularx}{\textwidth}{|X|c|c|c|c|c|}
+%     \hline
+%     \multirow{2}{*}{tb1} & \multirow{2}{*}{tbl2} & \multicolumn{4}{c|}{tbl3} \\
+%     \cline{3-6}
+%     {} & {} & A & B & C & D\\
+%     \hline
+%     Text & {} & Text & {} & {} & {} \\
+%     \hline
+%     \end{tabularx}
+% \caption{Table description}
+% \end{table}
+%
+% Something in a frame:
+% \begin{Verbatim}[frame=single,breaklines=true,breakanywhere=true]
+%    user@ubuntu$ cat /proc/sys/fs/file-nr
+% \end{Verbatim}
+%
+%
+% CPP code
+% \lstinputlisting[language=C++, caption={Фрагмент исходного кода модифицированного файла игры}, firstline=73, lastline=80]
+% {../Tasks/2_L4_Socket_sample/source_files/server_game_upd.cpp}
+%
+%
+% Any other code
+% \fbox{
+%     \parbox{\textwidth}{%
+%     \texttt{\noindent
+%     \#<domain>      <type>  <item>         <value>\\
+%     oracle          hard    nofile         8192
+%     }}%
+% }
+%
+%
+% Console output
+% \begin{lstlisting}[style=CommandLineStyle]
+%     user@ubuntu$ sudo sysctl fs.file-max=65536
+%     [sudo] password for user: 
+%     fs.file-max = 65536
+% \end{lstlisting}
+%
+%
+% Color box
+% \fbox{
+%     \parbox{\textwidth}{%
+%     \texttt{\noindent
+% 0000|   \hl{14 5a fc 0d 56 2d} 34 ce 00 37 d9 03 08 00 45 00\\
+% 0010|   00 54 20 30 00 00 40 01 e0 e8 c0 a8 7c 01 c0 a8\\
+% 0020|   7c 3e 00 00 d3 bd 00 02 00 0e 7a c1 e8 63 00 00\\
+% 0030|   00 00 08 3a 02 00 00 00 00 00 10 11 12 13 14 15\\
+% 0040|   16 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22 23 24 25\\
+% 0050|   26 27 28 29 2a 2b 2c 2d 2e 2f 30 31 32 33 34 35\\
+% 0060|   36 37
+%     }}%
+% }
+%
